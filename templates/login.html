@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-form-container">
+        <div class="login-header">
+            <i class="fas fa-shield-alt"></i>
+            <h1>Employee Access Control</h1>
+        </div>
+        <form class="login-form" method="POST" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn primary-btn">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+        </form>
+        <!-- <div class="login-info">
+            <p>Default Admin: admin@company.com / admin123</p>
+        </div> -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>Manager Dashboard</h1>
+    <p class="dashboard-intro">Welcome to the manager dashboard. Here you can view and update information for employees under your supervision.</p>
+    
+    <div class="stats-container">
+        <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <div class="stat-info">
+                <h3>Total Employees</h3>
+                <p>{{ employees|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-bar">
+        <div class="search-container">
+            <input type="text" id="employeeSearch" placeholder="Search employees...">
+            <i class="fas fa-search"></i>
+        </div>
+    </div>
+
+    <div class="employee-table-container">
+        <table class="employee-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Designation</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr class="employee-row" data-name="{{ employee.name|lower }}" data-email="{{ employee.email|lower }}" data-designation="{{ employee.designation|lower }}">
+                    <td>{{ employee.employee_id }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.email }}</td>
+                    <td>{{ employee.phone_number }}</td>
+                    <td>{{ employee.designation }}</td>
+                    <td class="actions">
+                        <a href="{{ url_for('manager_edit_employee', employee_id=employee.employee_id) }}" class="btn small edit-btn" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('employeeSearch');
+        const employeeRows = document.querySelectorAll('.employee-row');
+
+        searchInput.addEventListener('keyup', function() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            employeeRows.forEach(row => {
+                const name = row.dataset.name;
+                const email = row.dataset.email;
+                const designation = row.dataset.designation;
+                
+                if (name.includes(searchTerm) || 
+                    email.includes(searchTerm) || 
+                    designation.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

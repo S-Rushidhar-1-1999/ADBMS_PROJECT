@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h1>My Profile</h1>
+    
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-title">
+                <h2>{{ employee.name }}</h2>
+                <span class="role-badge {{ employee.role_name }}">{{ employee.role_name }}</span>
+            </div>
+        </div>
+        
+        <div class="profile-info">
+            <div class="info-group">
+                <h3><i class="fas fa-id-card"></i> Personal Information</h3>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Employee ID</label>
+                        <p>{{ employee.employee_id }}</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Name</label>
+                        <p>{{ employee.name }}</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Age</label>
+                        <p>{{ employee.age }}</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Gender</label>
+                        <p>{{ employee.gender }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-group">
+                <h3><i class="fas fa-briefcase"></i> Work Information</h3>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Designation</label>
+                        <p>{{ employee.designation }}</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Role</label>
+                        <p>{{ employee.role_name|title }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-group">
+                <h3><i class="fas fa-address-book"></i> Contact Information</h3>
+                <div class="info-row">
+                    <div class="info-item">
+                        <label>Email</label>
+                        <p>{{ employee.email }}</p>
+                    </div>
+                    <div class="info-item">
+                        <label>Phone</label>
+                        <p>{{ employee.phone_number }}</p>
+                    </div>
+                    <div class="info-item full-width">
+                        <label>Address</label>
+                        <p>{{ employee.address }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <a href="{{ url_for('change_password') }}" class="btn primary-btn">
+                <i class="fas fa-key"></i> Change Password
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

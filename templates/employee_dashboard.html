@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard employee-view">
+    <h1>Employee Dashboard</h1>
+    <p class="dashboard-intro">Welcome to your dashboard. Here you can view your information and change your password.</p>
+    
+    <div class="employee-profile">
+        <div class="profile-header">
+            <div class="profile-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-title">
+                <h2>{{ employee.name }}</h2>
+                <p>{{ employee.designation }}</p>
+            </div>
+        </div>
+        
+        <div class="profile-details">
+            <div class="detail-group">
+                <label><i class="fas fa-id-badge"></i> Employee ID</label>
+                <p>{{ employee.employee_id }}</p>
+            </div>
+            <div class="detail-group">
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <p>{{ employee.email }}</p>
+            </div>
+            <div class="detail-group">
+                <label><i class="fas fa-phone"></i> Phone</label>
+                <p>{{ employee.phone_number }}</p>
+            </div>
+            <div class="detail-group">
+                <label><i class="fas fa-venus-mars"></i> Gender</label>
+                <p>{{ employee.gender }}</p>
+            </div>
+            <div class="detail-group">
+                <label><i class="fas fa-birthday-cake"></i> Age</label>
+                <p>{{ employee.age }}</p>
+            </div>
+            <div class="detail-group">
+                <label><i class="fas fa-map-marker-alt"></i> Address</label>
+                <p>{{ employee.address }}</p>
+            </div>
+        </div>
+        
+        <div class="profile-actions">
+            <a href="{{ url_for('change_password') }}" class="btn primary-btn">
+                <i class="fas fa-key"></i> Change Password
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
